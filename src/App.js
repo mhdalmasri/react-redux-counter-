@@ -1,6 +1,17 @@
 import React, { Component } from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { reducer } from "./reducers";
+
 import logo from "./logo.svg";
 import "./App.css";
+import Counters from "./components/Counters";
+import Footer from "./components/Footer";
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 class App extends Component {
   constructor(props) {
@@ -11,55 +22,18 @@ class App extends Component {
     };
   }
 
-  Reset = () => {
-    this.setState({ count: 0 });
-  };
-
-  updateCounter = type => {
-    switch (type) {
-      case "INCREMENT":
-        return this.setState(state => {
-          return { count: state.count + 1 };
-        });
-      case "DECREMENT":
-        return this.setState(state => {
-          return { count: state.count - 1 };
-        });
-      case "DECREMENT":
-        return this.setState(state => {
-          return { count: state.count - 1 };
-        });
-      case "RESET":
-        return this.setState(state => {
-          return { count: (state.count = 0) };
-        });
-      default:
-        return this.state;
-    }
-  };
-
-  ToggleClick = () => {
-    this.setState(prevState => {
-      return { show: !prevState.show };
-    });
-  };
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Counter with Redux</h1>
         </header>
         <div className="App-intro">
-          <h2>Counter and Toggle - Update</h2>
-          <button onClick={() => this.updateCounter("INCREMENT")}>+ 1</button>
-          <button onClick={() => this.updateCounter("DECREMENT")}>- 1</button>
-          <button onClick={() => this.updateCounter("RESET")}>Reset</button>
-          {this.state.show ? <h2>{this.state.count}</h2> : ""}
-          <button onClick={this.ToggleClick}>
-            {this.state.show ? "Hide" : "Show"}
-          </button>
+          <Provider store={store}>
+            <Counters />
+            <Footer />
+          </Provider>
         </div>
       </div>
     );
