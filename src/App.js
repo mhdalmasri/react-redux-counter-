@@ -53,6 +53,9 @@ class App extends Component {
         </header>
         <div className="App-intro">
           <h2>Counter and Toggle - Update</h2>
+          <button onClick={() => this.updateCounter("INCREMENT")}>+ 1</button>
+          <button onClick={() => this.updateCounter("DECREMENT")}>- 1</button>
+          <button onClick={() => this.updateCounter("RESET")}>Reset</button>
           {this.state.show ? <h2>{this.state.count}</h2> : ""}
           <button onClick={this.ToggleClick}>
             {this.state.show ? "Hide" : "Show"}
