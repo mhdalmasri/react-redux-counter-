@@ -18,16 +18,17 @@ class Counters extends Component {
   render() {
     return (
       <div>
-      
         <button onClick={this.increment}>+ 1</button>
         <button onClick={this.decrement}>- 1</button>
         <button onClick={this.reset}>Reset</button>
         <button onClick={this.toggleclick}>
           {this.props.show ? "Hide" : "Show"}
         </button>
-        <div>{this.props.show ? <h2>Counter : {this.props.count}</h2> : ""}</div>
         <div>
-          {this.props.show ?<h2> Clicks : {this.props.click}</h2>: ""}
+          {this.props.show ? <h2>Counter : {this.props.count}</h2> : <br />}
+        </div>
+        <div>
+          {this.props.show ? <h2> Clicks : {this.props.click}</h2> : <br />}
         </div>
       </div>
     );
